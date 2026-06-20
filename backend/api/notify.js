@@ -35,24 +35,27 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Convert to a Data-Only message so Flutter's onBackgroundMessage handler
+    // wakes up and manually displays the notification. This bypasses OS-level drop bugs.
+    const messageData = {
+      ...data,
+      title: title || "New Notification",
+      body: body || "",
+      channelId: channelId || "ak_nexus_high_importance",
+    };
+
+    // FCM requires all data values to be strings
+    for (const key in messageData) {
+      if (messageData[key] !== null && messageData[key] !== undefined) {
+        messageData[key] = String(messageData[key]);
+      }
+    }
+
     const message = {
-      notification: {
-        title: title || "New Notification",
-        body: body || "",
-      },
-      data: data || {},
+      data: messageData,
       tokens: tokens,
       android: {
-        priority: "high",
-        notification: {
-          title: title || "New Notification",
-          body: body || "",
-          channelId: channelId || "ak_nexus_high_importance", // Defaults to high importance channel
-          sound: channelId === "ak_partner_jobs_v2" ? "partner_alert" : "default",
-          priority: "max",
-          defaultSound: channelId !== "ak_partner_jobs_v2",
-          defaultVibrateTimings: true,
-        }
+        priority: "high"
       },
       apns: {
         payload: {
