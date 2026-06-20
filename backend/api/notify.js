@@ -63,10 +63,8 @@ export default async function handler(req, res) {
         notification: {
           title: title || "New Notification",
           body: body || "",
-          channelId: channelId || "ak_nexus_high_importance",
-          sound: channelId === "ak_partner_jobs_v2" ? "partner_alert" : "default",
           priority: "max",
-          defaultSound: channelId !== "ak_partner_jobs_v2",
+          defaultSound: true,
           defaultVibrateTimings: true,
         }
       },
