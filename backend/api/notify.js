@@ -45,6 +45,8 @@ export default async function handler(req, res) {
       android: {
         priority: "high",
         notification: {
+          title: title || "New Notification",
+          body: body || "",
           channelId: channelId || "ak_nexus_high_importance", // Defaults to high importance channel
           sound: channelId === "ak_partner_jobs_v2" ? "partner_alert" : "default",
           priority: "max",
