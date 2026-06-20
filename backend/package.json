@@ -4,6 +4,6 @@
   "description": "Vercel FCM Webhook",
   "main": "api/notify.js",
   "dependencies": {
-    "firebase-admin": "^11.11.0"
+    "firebase-admin": "^12.2.0"
   }
 }
