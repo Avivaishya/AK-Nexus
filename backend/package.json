@@ -1,0 +1,9 @@
+{
+  "name": "ak-nexus-backend",
+  "version": "1.0.0",
+  "description": "Vercel FCM Webhook",
+  "main": "api/notify.js",
+  "dependencies": {
+    "firebase-admin": "^11.11.0"
+  }
+}
